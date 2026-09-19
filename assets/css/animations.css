@@ -1,0 +1,68 @@
+/* ============================================================
+   animations.css — Fade-in, pulso e respeito a reduced-motion
+   ============================================================ */
+
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.45;
+    transform: scale(0.75);
+  }
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(22px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(22px);
+}
+
+.reveal.is-visible {
+  animation: fadeUp 0.8s var(--ease) forwards;
+}
+
+.card-grid .reveal.is-visible:nth-child(2),
+.service-grid .reveal.is-visible:nth-child(2) {
+  animation-delay: 0.08s;
+}
+
+.card-grid .reveal.is-visible:nth-child(3),
+.service-grid .reveal.is-visible:nth-child(3) {
+  animation-delay: 0.16s;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .reveal,
+  .reveal.is-visible {
+    opacity: 1;
+    transform: none;
+    animation: none;
+  }
+
+  .pulse-dot,
+  .btn,
+  .card,
+  .service-card,
+  .mail-card,
+  .social-list a {
+    animation: none;
+    transition: none;
+  }
+}

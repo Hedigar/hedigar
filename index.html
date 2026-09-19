@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Hedigar — Educação, Matemática e Soluções em Tecnologia. Portal educacional, assistência técnica e projetos digitais."
+    />
+    <meta name="theme-color" content="#05060a" />
+    <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml" />
+    <title>Hedigar — Educação, Matemática e Tecnologia</title>
+
+    <!-- Tipografias: cyber para títulos, humanista para leitura, mono para detalhes técnicos -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;800&family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Ícones minimalistas -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+      integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+
+    <!-- CSS modular: tokens → base → layout → componentes → animações -->
+    <link rel="stylesheet" href="assets/css/tokens.css" />
+    <link rel="stylesheet" href="assets/css/base.css" />
+    <link rel="stylesheet" href="assets/css/layout.css" />
+    <link rel="stylesheet" href="assets/css/components.css" />
+    <link rel="stylesheet" href="assets/css/animations.css" />
+  </head>
+  <body>
+    <!-- Canvas de fundo: partículas conectadas + símbolos matemáticos -->
+    <canvas id="bg-canvas" aria-hidden="true"></canvas>
+    <div class="page-veil" aria-hidden="true"></div>
+
+    <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+
+    <header class="site-header" data-header>
+      <div class="container header-inner">
+        <a class="brand" href="#inicio" aria-label="Hedigar — início">
+          <span class="brand-mark" aria-hidden="true">∑</span>
+          <span class="brand-name">HEDIGAR</span>
+        </a>
+
+        <button
+          class="nav-toggle"
+          type="button"
+          data-nav-toggle
+          aria-expanded="false"
+          aria-controls="menu-principal"
+          aria-label="Abrir menu"
+        >
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+
+        <nav class="site-nav" id="menu-principal" data-nav>
+          <ul class="nav-list">
+            <li><a href="#inicio">Início</a></li>
+            <li><a href="#educacao">Espaço Educacional</a></li>
+            <li><a href="#assistencia">Assistência Técnica</a></li>
+            <li><a href="#contato">Contato</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <main id="conteudo">
+      <!-- 1. Hero -->
+      <section class="hero" id="inicio">
+        <div class="container hero-grid">
+          <div class="hero-copy">
+            <p class="eyebrow reveal" data-reveal>
+              <span class="pulse-dot"></span>
+              Sistema online · v1.0
+            </p>
+            <h1 class="hero-title reveal" data-reveal>
+              <span class="hero-glitch" data-text="HEDIGAR">HEDIGAR</span>
+            </h1>
+            <p class="hero-subtitle reveal" data-reveal>
+              Educação, Matemática e Soluções em Tecnologia.
+            </p>
+            <p class="hero-lead reveal" data-reveal>
+              Um ponto de encontro entre rigor analítico e engenharia digital —
+              do quadro-negro ao código, da sala de aula à manutenção de sistemas.
+            </p>
+            <div class="hero-actions reveal" data-reveal>
+              <a class="btn btn-primary" href="#educacao">
+                Explorar o site
+                <i class="fa-solid fa-arrow-down" aria-hidden="true"></i>
+              </a>
+              <a class="btn btn-ghost" href="#contato">Falar comigo</a>
+            </div>
+          </div>
+
+          <aside class="hero-panel reveal" data-reveal aria-hidden="true">
+            <div class="panel-frame">
+              <header class="panel-bar">
+                <span></span><span></span><span></span>
+                <code>core/identity.hex</code>
+              </header>
+              <pre class="panel-code"><code><span class="tok-kw">const</span> perfil = {
+  nome: <span class="tok-str">"Hedigar"</span>,
+  eixos: [
+    <span class="tok-str">"educação"</span>,
+    <span class="tok-str">"matemática"</span>,
+    <span class="tok-str">"tecnologia"</span>
+  ],
+  status: <span class="tok-str">"online"</span>
+};</code></pre>
+              <div class="panel-formula">
+                <span>f(x) = educação ∩ tech</span>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <!-- 2. Espaço Educacional / Portal do Aluno -->
+      <section class="section" id="educacao">
+        <div class="container">
+          <header class="section-head reveal" data-reveal>
+            <p class="section-kicker">Portal do Aluno</p>
+            <h2>Espaço Educacional</h2>
+            <p class="section-intro">
+              Material de apoio, dinâmicas de turma e, em breve, o ambiente exclusivo
+              do <strong>Barão</strong> — preparado para crescer sem perder o foco.
+            </p>
+          </header>
+
+          <div class="card-grid">
+            <article class="card reveal" data-reveal>
+              <div class="card-icon" aria-hidden="true">
+                <i class="fa-solid fa-folder-open"></i>
+              </div>
+              <h3>Material de Apoio</h3>
+              <p>
+                Repositório de PDFs, listas e pastas organizadas por tema.
+                Em breve, links diretos para download e consulta rápida.
+              </p>
+              <a class="card-link" href="pages/barao/index.html">
+                Preparando o terreno
+                <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+              </a>
+            </article>
+
+            <article class="card card-accent reveal" data-reveal>
+              <div class="card-icon" aria-hidden="true">
+                <i class="fa-solid fa-chalkboard-user"></i>
+              </div>
+              <h3>Dinâmicas e Desafios</h3>
+              <p>
+                Resolução de questões no quadro vale <strong>bônus na prova</strong>.
+                Quem sobe, demonstra raciocínio, treina comunicação e soma pontos —
+                um incentivo direto ao engajamento da turma.
+              </p>
+              <span class="chip">+ bônus · participação</span>
+            </article>
+
+            <article class="card card-soon reveal" data-reveal>
+              <div class="card-icon" aria-hidden="true">
+                <i class="fa-solid fa-graduation-cap"></i>
+              </div>
+              <h3>Portal Barão</h3>
+              <p>
+                Página exclusiva em construção. Ferramentas, avisos e conteúdos
+                específicos da turma terão casa própria em
+                <code>/pages/barao</code>.
+              </p>
+              <a class="card-link" href="pages/barao/index.html">
+                Ver preview
+                <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+              </a>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- 3. Assistência Técnica -->
+      <section class="section section-tech" id="assistencia">
+        <div class="container">
+          <header class="section-head reveal" data-reveal>
+            <p class="section-kicker">Precisão técnica</p>
+            <h2>Assistência Técnica e Manutenção</h2>
+            <p class="section-intro">
+              Diagnóstico objetivo, intervenção limpa e sistemas estáveis.
+              Hardware, software e redes tratados com o mesmo critério:
+              entender o problema antes de tocar no equipamento.
+            </p>
+          </header>
+
+          <div class="service-grid">
+            <article class="service-card reveal" data-reveal>
+              <div class="service-icon" aria-hidden="true">
+                <i class="fa-solid fa-microchip"></i>
+              </div>
+              <h3>Hardware</h3>
+              <p>
+                Montagem, upgrade, limpeza interna, troca de componentes e
+                diagnóstico de falhas físicas com checklist técnico.
+              </p>
+            </article>
+
+            <article class="service-card reveal" data-reveal>
+              <div class="service-icon" aria-hidden="true">
+                <i class="fa-solid fa-code"></i>
+              </div>
+              <h3>Software</h3>
+              <p>
+                Instalação, otimização, remoção de malware, backup e
+                configuração de ambientes de trabalho estáveis.
+              </p>
+            </article>
+
+            <article class="service-card reveal" data-reveal>
+              <div class="service-icon" aria-hidden="true">
+                <i class="fa-solid fa-network-wired"></i>
+              </div>
+              <h3>Redes</h3>
+              <p>
+                Cabeamento, Wi-Fi, roteadores e conectividade entre dispositivos —
+                da casa ao pequeno escritório, com foco em estabilidade.
+              </p>
+            </article>
+          </div>
+
+          <div class="trust-bar reveal" data-reveal>
+            <div>
+              <span class="trust-value">01</span>
+              <span class="trust-label">Diagnóstico</span>
+            </div>
+            <div>
+              <span class="trust-value">02</span>
+              <span class="trust-label">Intervenção</span>
+            </div>
+            <div>
+              <span class="trust-value">03</span>
+              <span class="trust-label">Validação</span>
+            </div>
+            <div>
+              <span class="trust-value">04</span>
+              <span class="trust-label">Entrega</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 4. Contato -->
+      <section class="section" id="contato">
+        <div class="container contact-wrap">
+          <header class="section-head reveal" data-reveal>
+            <p class="section-kicker">Canal direto</p>
+            <h2>Contato</h2>
+            <p class="section-intro">
+              Educação, projetos digitais ou manutenção: escreva pelo e-mail
+              profissional. Resposta objetiva, sem ruído.
+            </p>
+          </header>
+
+          <a class="mail-card reveal" data-reveal href="mailto:contato@hedigar.com.br">
+            <span class="mail-label">E-mail profissional</span>
+            <span class="mail-address">contato@hedigar.com.br</span>
+            <span class="mail-hint">Clique para abrir o cliente de e-mail</span>
+          </a>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-inner">
+        <div class="footer-brand">
+          <span class="brand-mark" aria-hidden="true">∑</span>
+          <div>
+            <strong>Hedigar</strong>
+            <p>Educação · Matemática · Tecnologia</p>
+          </div>
+        </div>
+
+        <ul class="social-list">
+          <li>
+            <a href="https://github.com" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+              <i class="fa-brands fa-github" aria-hidden="true"></i>
+            </a>
+          </li>
+          <li>
+            <a href="https://www.linkedin.com" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+              <i class="fa-brands fa-linkedin-in" aria-hidden="true"></i>
+            </a>
+          </li>
+          <li>
+            <a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+              <i class="fa-brands fa-instagram" aria-hidden="true"></i>
+            </a>
+          </li>
+        </ul>
+
+        <p class="copyright">
+          © <span data-year></span> Hedigar. Todos os direitos reservados.
+        </p>
+      </div>
+    </footer>
+
+    <script src="assets/js/background.js" defer></script>
+    <script src="assets/js/animations.js" defer></script>
+    <script src="assets/js/main.js" defer></script>
+  </body>
+</html>

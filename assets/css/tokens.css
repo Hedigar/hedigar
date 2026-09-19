@@ -1,0 +1,61 @@
+/* ============================================================
+   tokens.css — Design system (cores, tipo, ritmo, elevação)
+   Tema: dark mode + neon (ciano / violeta) + matemática
+   ============================================================ */
+
+:root {
+  /* Superfícies */
+  --bg-deep: #05060a;
+  --bg-base: #080b12;
+  --bg-elevated: #0e1422;
+  --bg-card: rgba(14, 20, 34, 0.72);
+  --bg-glass: rgba(8, 12, 22, 0.55);
+
+  /* Texto */
+  --text-primary: #eef6ff;
+  --text-muted: #93a4c0;
+  --text-dim: #6b7c99;
+
+  /* Neon */
+  --cyan: #00e5ff;
+  --cyan-soft: rgba(0, 229, 255, 0.16);
+  --violet: #b56cff;
+  --violet-soft: rgba(181, 108, 255, 0.16);
+  --magenta: #ff4fd8;
+
+  /* Semânticos */
+  --line: rgba(148, 185, 255, 0.14);
+  --line-strong: rgba(0, 229, 255, 0.35);
+  --shadow: 0 24px 60px rgba(0, 0, 0, 0.45);
+  --glow-cyan: 0 0 24px rgba(0, 229, 255, 0.28);
+  --glow-violet: 0 0 28px rgba(181, 108, 255, 0.28);
+
+  /* Tipo */
+  --font-display: "Orbitron", system-ui, sans-serif;
+  --font-sans: "Outfit", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+
+  /* Ritmo (mobile-first) */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.5rem;
+  --space-6: 2rem;
+  --space-7: 3rem;
+  --space-8: 5rem;
+
+  --radius-sm: 10px;
+  --radius-md: 16px;
+  --radius-lg: 24px;
+
+  --header-h: 4.25rem;
+  --container: 1120px;
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --ease: linear;
+  }
+}
