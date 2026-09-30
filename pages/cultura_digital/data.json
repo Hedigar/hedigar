@@ -1,0 +1,14 @@
+[
+    {"id": 1, "activity": "Roda de conversa inicial", "professor": "", "observations": "", "applied_at": ""},
+    {"id": 2, "activity": "Questionário diagnóstico", "professor": "", "observations": "", "applied_at": ""},
+    {"id": 3, "activity": "Pesquisa orientada", "professor": "", "observations": "", "applied_at": ""},
+    {"id": 4, "activity": "Pesquisa sobre cursos", "professor": "", "observations": "", "applied_at": ""},
+    {"id": 5, "activity": "Estudo comparativo", "professor": "", "observations": "", "applied_at": ""},
+    {"id": 6, "activity": "Estudo das modalidades de ensino", "professor": "", "observations": "", "applied_at": ""},
+    {"id": 7, "activity": "Pesquisa sobre formas de ingresso", "professor": "", "observations": "", "applied_at": ""},
+    {"id": 8, "activity": "Palestras e entrevistas", "professor": "", "observations": "", "applied_at": ""},
+    {"id": 9, "activity": "Visita pedagógica", "professor": "", "observations": "", "applied_at": ""},
+    {"id": 10, "activity": "Produção de materiais", "professor": "", "observations": "", "applied_at": ""},
+    {"id": 11, "activity": "Projeto de vida", "professor": "", "observations": "", "applied_at": ""},
+    {"id": 12, "activity": "Mostra de oportunidades", "professor": "", "observations": "", "applied_at": ""}
+]

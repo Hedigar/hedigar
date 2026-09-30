@@ -1,53 +1,182 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-  <head>
+<head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#05060a" />
     <title>Portal Barão — Hedigar</title>
+
+    <!-- Tipografias: cyber para títulos, humanista para leitura, mono para detalhes técnicos -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Outfit:wght@400;600&display=swap"
-      rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;800&family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+        rel="stylesheet"
     />
+
+    <!-- Ícones minimalistas -->
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+        integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+        crossorigin="anonymous"
+        referrerpolicy="no-referrer"
+    />
+
+    <!-- CSS modular: tokens → base → layout → componentes → animações -->
     <link rel="stylesheet" href="../../assets/css/tokens.css" />
     <link rel="stylesheet" href="../../assets/css/base.css" />
     <link rel="stylesheet" href="../../assets/css/layout.css" />
     <link rel="stylesheet" href="../../assets/css/components.css" />
-    <style>
-      .placeholder {
-        min-height: 70vh;
-        display: grid;
-        place-items: center;
-        text-align: center;
-        padding: 4rem 0;
-      }
-      .placeholder h1 {
-        font-family: var(--font-display);
-        letter-spacing: 0.08em;
-        margin-bottom: 0.8rem;
-      }
-      .placeholder p {
-        color: var(--text-muted);
-        max-width: 32rem;
-        margin-inline: auto;
-      }
-    </style>
-  </head>
-  <body>
-    <main class="container placeholder">
-      <div>
-        <p class="section-kicker">Em construção</p>
-        <h1>Portal Barão</h1>
-        <p>
-          Este espaço receberá o ambiente exclusivo da turma: materiais, dinâmicas
-          e avisos. A Home já aponta para cá.
-        </p>
-        <p style="margin-top: 1.5rem">
-          <a class="btn btn-primary" href="../../index.html">Voltar para a Home</a>
-        </p>
-      </div>
+    <link rel="stylesheet" href="../../assets/css/animations.css" />
+</head>
+<body>
+    <!-- Canvas de fundo: partículas conectadas + símbolos matemáticos -->
+    <canvas id="bg-canvas" aria-hidden="true"></canvas>
+    <div class="page-veil" aria-hidden="true"></div>
+
+    <a class="skip-link" href="#conteudo-barao">Pular para o conteúdo</a>
+
+    <header class="site-header" data-header>
+        <div class="container header-inner">
+            <a class="brand" href="../../index.html" aria-label="Hedigar — início">
+                <span class="brand-mark" aria-hidden="true">∑</span>
+                <span class="brand-name">HEDIGAR</span>
+            </a>
+
+            <button
+                class="nav-toggle"
+                type="button"
+                data-nav-toggle
+                aria-expanded="false"
+                aria-controls="menu-barao"
+                aria-label="Abrir menu"
+            >
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <nav class="site-nav" id="menu-barao" data-nav>
+                <ul class="nav-list">
+                    <li><a href="../../index.html">Início</a></li>
+                    <li><a href="../../index.php">Todas as Turmas</a></li>
+                    <li><a href="../../admin/login.php" class="btn btn-ghost" style="padding:0.5rem 1rem;font-size:0.85rem;">Painel Admin</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main id="conteudo-barao">
+        <section class="section" style="padding-top: 6rem; padding-bottom: 4rem;">
+            <div class="container">
+                <!-- Cabeçalho da página Barão -->
+                <header class="section-head reveal" data-reveal style="margin-bottom: 3rem; text-align: center;">
+                    <p class="section-kicker">Turma do Barão</p>
+                    <h1 class="hero-title" style="font-size: 2.5rem;">
+                        <span class="hero-glitch" data-text="PORTAL BARÃO">PORTAL BARÃO</span>
+                    </h1>
+                    <p class="hero-subtitle">Ambiente exclusivo da turma — materiais, dinâmicas e pontuações</p>
+                </header>
+
+                <!-- Grid de cards do Barão -->
+                <div class="card-grid" style="max-width: 900px; margin: 0 auto;">
+                    <article class="card reveal" data-reveal>
+                        <div class="card-icon" aria-hidden="true">
+                            <i class="fa-solid fa-folder-open"></i>
+                        </div>
+                        <h3>Materiais de Aula</h3>
+                        <p>PDFs, listas de exercícios, apostilas e resumos de matemática e tecnologia da turma.</p>
+                        <a class="card-link" href="../../turma.php?slug=barao">
+                            Ver Materiais <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+                        </a>
+                    </article>
+
+                    <article class="card card-accent reveal" data-reveal>
+                        <div class="card-icon" aria-hidden="true">
+                            <i class="fa-solid fa-chalkboard-user"></i>
+                        </div>
+                        <h3>Dinâmicas & Desafios</h3>
+                        <p>Resolução de questões no quadro valendo bônus na prova. Pontue, participe e acompanhe sua evolução.</p>
+                        <span class="chip">+ bônus · participação</span>
+                    </article>
+
+                    <article class="card reveal" data-reveal>
+                        <div class="card-icon" aria-hidden="true">
+                            <i class="fa-solid fa-trophy"></i>
+                        </div>
+                        <h3>Placar da Turma</h3>
+                        <p>Ranking atualizado de pontuações, medalhas e destaques das atividades em sala.</p>
+                        <a class="card-link" href="../../turma.php?slug=barao">
+                            Ver Placar <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+                        </a>
+                    </article>
+
+                    <article class="card reveal" data-reveal>
+                        <div class="card-icon" aria-hidden="true">
+                            <i class="fa-solid fa-laptop-code"></i>
+                        </div>
+                        <h3>Projeto Cultura Digital EJA</h3>
+                        <p>Espaço para atribuição de atividades aos professores e envio de arquivos do projeto.</p>
+                        <a class="card-link" href="../cultura_digital/index.php">
+                            Acessar Espaço <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+                        </a>
+                    </article>
+
+                    <article class="card reveal" data-reveal>
+                        <div class="card-icon" aria-hidden="true">
+                            <i class="fa-solid fa-bullhorn"></i>
+                        </div>
+                        <h3>Avisos Importantes</h3>
+                        <p>Datas de provas, entregas de trabalhos e informes da disciplina.</p>
+                        <a class="card-link" href="../../turma.php?slug=barao">
+                            Ver Avisos <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+                        </a>
+                    </article>
+                </div>
+
+                <!-- Call to action para o Admin -->
+                <div class="trust-bar reveal" data-reveal style="margin-top: 3rem; max-width: 900px; margin-left: auto; margin-right: auto;">
+                    <div>
+                        <span class="trust-value">8181</span>
+                        <span class="trust-label">Porta do Portal</span>
+                    </div>
+                    <div>
+                        <span class="trust-value">MySQL</span>
+                        <span class="trust-label">Banco de Dados</span>
+                    </div>
+                    <div>
+                        <span class="trust-value">∑</span>
+                        <span class="trust-label">Gamificação Ativa</span>
+                    </div>
+                </div>
+
+                <div class="reveal" data-reveal style="margin-top: 3rem; text-align: center;">
+                    <a class="btn btn-primary" href="../../admin/login.php">
+                        <i class="fa-solid fa-lock" aria-hidden="true"></i> Acessar Painel do Professor
+                    </a>
+                </div>
+            </div>
+        </section>
     </main>
-  </body>
+
+    <footer class="site-footer">
+        <div class="container footer-inner">
+            <div class="footer-brand">
+                <span class="brand-mark" aria-hidden="true">∑</span>
+                <div>
+                    <strong>Hedigar</strong>
+                    <p>Educação · Matemática · Tecnologia</p>
+                </div>
+            </div>
+            <p class="copyright">
+                © <span data-year></span> Hedigar. Todos os direitos reservados.
+            </p>
+        </div>
+    </footer>
+
+    <script src="../../assets/js/background.js" defer></script>
+    <script src="../../assets/js/animations.js" defer></script>
+    <script src="../../assets/js/main.js" defer></script>
+</body>
 </html>
