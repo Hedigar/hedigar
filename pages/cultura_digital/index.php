@@ -1,4 +1,29 @@
 <?php
+session_start();
+
+$SENHA_PRIVADA = 'cultura2026';
+
+// Logout
+if (isset($_GET['logout'])) {
+    unset($_SESSION['cultura_digital_auth']);
+    header('Location: index.php');
+    exit;
+}
+
+// Verifica login
+$erro = '';
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['senha_acesso'])) {
+    if ($_POST['senha_acesso'] === $SENHA_PRIVADA) {
+        $_SESSION['cultura_digital_auth'] = true;
+        header('Location: index.php');
+        exit;
+    } else {
+        $erro = 'Senha incorreta!';
+    }
+}
+
+$is_auth = !empty($_SESSION['cultura_digital_auth']);
+
 $dataFile = __DIR__ . '/data.json';
 $activities = json_decode(file_get_contents($dataFile), true);
 
@@ -131,7 +156,35 @@ $driveLink = "https://drive.google.com/drive/folders/1dbMg1Z_KVbIDujy2RF3NC6R4aT
         }
         .project-header {
             text-align: center;
-            margin-bottom: 4rem;
+            margin-bottom: 3rem;
+        }
+        .login-box {
+            max-width: 400px;
+            margin: 4rem auto;
+            background: var(--surface-2);
+            padding: 2.5rem;
+            border-radius: 1rem;
+            border: 1px solid var(--border-subtle);
+            text-align: center;
+        }
+        .login-box input {
+            width: 100%;
+            padding: 0.8rem;
+            margin: 1rem 0;
+            background: var(--surface-3);
+            border: 1px solid var(--border-subtle);
+            border-radius: 0.5rem;
+            color: white;
+        }
+        .login-box button {
+            width: 100%;
+            padding: 0.8rem;
+            background: var(--accent-primary);
+            color: white;
+            border: none;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            cursor: pointer;
         }
     </style>
 </head>
@@ -149,6 +202,9 @@ $driveLink = "https://drive.google.com/drive/folders/1dbMg1Z_KVbIDujy2RF3NC6R4aT
                 <ul class="nav-list">
                     <li><a href="../../index.html">Início</a></li>
                     <li><a href="../../index.php">Turmas</a></li>
+                    <?php if ($is_auth): ?>
+                        <li><a href="?logout=1" style="color: #ff6b6b;"><i class="fa-solid fa-right-from-bracket"></i> Sair</a></li>
+                    <?php endif; ?>
                 </ul>
             </nav>
         </div>
@@ -161,49 +217,68 @@ $driveLink = "https://drive.google.com/drive/folders/1dbMg1Z_KVbIDujy2RF3NC6R4aT
             <p class="hero-subtitle">Espaço de Colaboração para Professores e Atividades Metodológicas</p>
         </div>
 
-        <div class="activity-grid">
-            <?php foreach ($activities as $act): ?>
-            <article class="activity-card reveal" data-reveal>
-                <h3><?= htmlspecialchars($act['activity']) ?></h3>
+        <?php if (!$is_auth): ?>
+            <!-- Form de senha de acesso -->
+            <div class="login-box reveal" data-reveal>
+                <i class="fa-solid fa-lock" style="font-size: 2.5rem; color: var(--accent-primary); margin-bottom: 1rem;"></i>
+                <h2>Área Restrita</h2>
+                <p style="color: var(--text-muted); font-size: 0.9rem;">Digite a senha simples do projeto para visualizar e editar.</p>
                 
-                <div class="info-row">
-                    <span class="info-label">Professor(a)</span>
-                    <span class="info-value"><?= $act['professor'] ?: '<span style="font-style: italic; color: var(--text-muted);">Aguardando...</span>' ?></span>
-                </div>
-
-                <div class="info-row">
-                    <span class="info-label">Data de Aplicação</span>
-                    <span class="info-value"><?= $act['applied_at'] ?: '--/--/----' ?></span>
-                </div>
-
-                <?php if ($act['observations']): ?>
-                <div class="info-row">
-                    <span class="info-label">Observações</span>
-                    <div class="obs-text"><?= nl2br(htmlspecialchars($act['observations'])) ?></div>
-                </div>
+                <?php if ($erro): ?>
+                    <p style="color: #ff6b6b; font-size: 0.9rem; margin-top: 0.5rem;"><?= htmlspecialchars($erro) ?></p>
                 <?php endif; ?>
 
-                <form class="assignment-form" action="update.php" method="POST">
-                    <input type="hidden" name="id" value="<?= $act['id'] ?>">
-                    <div class="form-row">
-                        <input type="text" name="professor" placeholder="Nome" value="<?= htmlspecialchars($act['professor']) ?>" style="flex: 2;">
-                        <input type="text" name="applied_at" placeholder="Data (ex: 02/10)" value="<?= htmlspecialchars($act['applied_at']) ?>" style="flex: 1;">
-                    </div>
-                    <textarea name="observations" placeholder="Observações..." rows="2"><?= htmlspecialchars($act['observations']) ?></textarea>
-                    <button type="submit">Salvar Alterações</button>
+                <form method="POST">
+                    <input type="password" name="senha_acesso" placeholder="Senha de acesso" required autofocus>
+                    <button type="submit">Entrar no Espaço</button>
                 </form>
-            </article>
-            <?php endforeach; ?>
-        </div>
+            </div>
+        <?php else: ?>
+            <!-- Conteúdo Protegido -->
+            <div class="activity-grid">
+                <?php foreach ($activities as $act): ?>
+                <article class="activity-card reveal" data-reveal>
+                    <h3><?= htmlspecialchars($act['activity']) ?></h3>
+                    
+                    <div class="info-row">
+                        <span class="info-label">Professor(a)</span>
+                        <span class="info-value"><?= $act['professor'] ? htmlspecialchars($act['professor']) : '<span style="font-style: italic; color: var(--text-muted);">Aguardando...</span>' ?></span>
+                    </div>
 
-        <div class="drive-box reveal" data-reveal>
-            <i class="fa-brands fa-google-drive"></i>
-            <h2>Envio de Arquivos</h2>
-            <p>Clique no botão abaixo para acessar a pasta compartilhada no Google Drive e enviar seus materiais.</p>
-            <a href="<?= $driveLink ?>" target="_blank" class="btn btn-primary" style="margin-top: 1rem;">
-                <i class="fa-solid fa-cloud-arrow-up"></i> Acessar Google Drive
-            </a>
-        </div>
+                    <div class="info-row">
+                        <span class="info-label">Data de Aplicação</span>
+                        <span class="info-value"><?= $act['applied_at'] ? htmlspecialchars($act['applied_at']) : '--/--/----' ?></span>
+                    </div>
+
+                    <?php if (!empty($act['observations'])): ?>
+                    <div class="info-row">
+                        <span class="info-label">Observações</span>
+                        <div class="obs-text"><?= nl2br(htmlspecialchars($act['observations'])) ?></div>
+                    </div>
+                    <?php endif; ?>
+
+                    <form class="assignment-form" action="update.php" method="POST">
+                        <input type="hidden" name="id" value="<?= $act['id'] ?>">
+                        <div class="form-row">
+                            <input type="text" name="professor" placeholder="Seu nome" value="<?= htmlspecialchars($act['professor']) ?>" style="flex: 2;">
+                            <input type="text" name="applied_at" placeholder="Data (ex: 02/10)" value="<?= htmlspecialchars($act['applied_at']) ?>" style="flex: 1;">
+                        </div>
+                        <textarea name="observations" placeholder="Observações..." rows="2"><?= htmlspecialchars($act['observations']) ?></textarea>
+                        <button type="submit">Salvar Alterações</button>
+                    </form>
+                </article>
+                <?php endforeach; ?>
+            </div>
+
+            <div class="drive-box reveal" data-reveal>
+                <i class="fa-brands fa-google-drive"></i>
+                <h2>Envio de Arquivos</h2>
+                <p>Clique no botão abaixo para acessar a pasta compartilhada no Google Drive e enviar seus materiais.</p>
+                <a href="<?= $driveLink ?>" target="_blank" class="btn btn-primary" style="margin-top: 1rem;">
+                    <i class="fa-solid fa-cloud-arrow-up"></i> Acessar Google Drive
+                </a>
+            </div>
+        <?php endif; ?>
     </main>
 
     <footer class="site-footer">
