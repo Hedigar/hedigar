@@ -203,20 +203,37 @@ $driveLink = "https://drive.google.com/drive/folders/1dbMg1Z_KVbIDujy2RF3NC6R4aT
             cursor: pointer;
         }
         .site-header {
-            background: #05060a;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 100;
+            background: rgba(5, 6, 10, 0.8) !important;
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
             padding: 1rem 0;
+        }
+        .header-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
         }
         .nav-list {
             display: flex;
-            justify-content: center;
+            align-items: center;
             gap: 2rem;
             list-style: none;
             padding: 0;
+            margin: 0;
         }
         .nav-list a {
             color: #c0caf5;
             text-decoration: none;
             transition: color 0.2s;
+            font-family: 'Outfit', sans-serif;
+            font-size: 0.95rem;
+            font-weight: 500;
         }
         .nav-list a:hover {
             color: #00f2fe;
@@ -236,7 +253,7 @@ $driveLink = "https://drive.google.com/drive/folders/1dbMg1Z_KVbIDujy2RF3NC6R4aT
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 0 1rem;
+            padding: 0 1.5rem;
         }
     </style>
 </head>
@@ -326,11 +343,11 @@ $driveLink = "https://drive.google.com/drive/folders/1dbMg1Z_KVbIDujy2RF3NC6R4aT
                 <?php endforeach; ?>
             </div>
 
-            <div class="drive-box reveal" data-reveal>
+            <div class="drive-box reveal" data-reveal style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
                 <i class="fa-brands fa-google-drive"></i>
                 <h2>Envio de Arquivos</h2>
                 <p>Clique no botão abaixo para acessar a pasta compartilhada no Google Drive e enviar seus materiais.</p>
-                <a href="<?= $driveLink ?>" target="_blank" class="btn btn-primary" style="margin-top: 1rem;">
+                <a href="<?= $driveLink ?>" target="_blank" class="btn btn-primary" style="margin-top: 1rem; width: fit-content; display: inline-flex; align-items: center; gap: 0.5rem;">
                     <i class="fa-solid fa-cloud-arrow-up"></i> Acessar Google Drive
                 </a>
             </div>
