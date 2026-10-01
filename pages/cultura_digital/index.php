@@ -35,7 +35,7 @@ $driveLink = "https://drive.google.com/drive/folders/1dbMg1Z_KVbIDujy2RF3NC6R4aT
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#05060a" />
-    <title>Cultura Digital EJA 2026 — Projeto</title>
+    <title>Projeto EJA — Caminhos para o Ensino Superior e Educação Profissional</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -213,8 +213,8 @@ $driveLink = "https://drive.google.com/drive/folders/1dbMg1Z_KVbIDujy2RF3NC6R4aT
     <main class="container" style="padding-top: 8rem; padding-bottom: 6rem;">
         <div class="project-header reveal" data-reveal>
             <p class="section-kicker">EJA - Barão de Tramandaí</p>
-            <h1 class="hero-title">CULTURA DIGITAL 2026</h1>
-            <p class="hero-subtitle">Espaço de Colaboração para Professores e Atividades Metodológicas</p>
+            <h1 class="hero-title" style="font-size: 2rem; line-height: 1.2;">CAMINHOS PARA O ENSINO SUPERIOR E A EDUCAÇÃO PROFISSIONAL</h1>
+            <p class="hero-subtitle">Espaço Integrado de Colaboração Interdisciplinar e Atividades Metodológicas (2026/2)</p>
         </div>
 
         <?php if (!$is_auth): ?>
