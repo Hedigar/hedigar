@@ -112,66 +112,67 @@ $driveLink = "https://drive.google.com/drive/folders/1dbMg1Z_KVbIDujy2RF3NC6R4aT
             flex-direction: column;
             gap: 0.8rem;
             margin-top: auto;
-            padding: 1rem;
-            background: #161b2d;
+            padding: 1.2rem;
+            background: linear-gradient(135deg, rgba(0, 242, 254, 0.05) 0%, rgba(79, 172, 254, 0.05) 100%);
+            border: 1px solid #2a3755;
             border-radius: 0.8rem;
-            border: 1px solid #283150;
         }
         .form-row {
             display: flex;
-            gap: 0.5rem;
+            flex-direction: column;
+            gap: 0.8rem;
+            margin-bottom: 0.5rem;
         }
-        .assignment-form input, .assignment-form textarea {
+        .form-group {
+            width: 100%;
+        }
+        .form-group input, .assignment-form textarea {
+            width: 100%;
             background: #090c15;
             border: 1px solid #2e3859;
             border-radius: 0.5rem;
-            padding: 0.6rem 0.8rem;
+            padding: 0.7rem 0.9rem;
             color: #ffffff;
             font-size: 0.85rem;
             font-family: 'Outfit', sans-serif;
-            transition: border-color 0.2s;
+            transition: border-color 0.2s, box-shadow 0.2s;
         }
-        .assignment-form input::placeholder, .assignment-form textarea::placeholder {
+        .form-group input::placeholder, .assignment-form textarea::placeholder {
             color: #617196;
         }
-        .assignment-form input:focus, .assignment-form textarea:focus {
+        .form-group input:focus, .assignment-form textarea:focus {
             border-color: #00f2fe;
             background: #0d1220;
             outline: none;
             box-shadow: 0 0 0 2px rgba(0, 242, 254, 0.2);
+        }
+        .assignment-form textarea {
+            resize: vertical;
+            min-height: 80px;
         }
         .assignment-form button {
             background: linear-gradient(135deg, #00f2fe 0%, #4facfe 100%);
             color: #05060a;
             border: none;
             border-radius: 0.5rem;
-            padding: 0.7rem;
+            padding: 0.9rem;
             cursor: pointer;
-            font-size: 0.85rem;
+            font-size: 0.9rem;
             font-weight: 700;
             letter-spacing: 0.03rem;
             transition: opacity 0.2s, transform 0.1s;
+            width: 100%;
         }
         .assignment-form button:hover {
             opacity: 0.95;
             transform: scale(1.01);
         }
-        .drive-box {
-            background: var(--surface-accent);
-            border-radius: 1rem;
-            padding: 2rem;
-            text-align: center;
-            margin-top: 4rem;
-            border: 1px solid var(--accent-primary-alpha);
-        }
-        .drive-box i {
-            font-size: 2.5rem;
-            color: var(--accent-primary);
-            margin-bottom: 1rem;
+        .assignment-form button:active {
+            transform: scale(0.98);
         }
         .project-header {
             text-align: center;
-            margin-bottom: 3rem;
+            margin-bottom: 4rem;
         }
         .login-box {
             max-width: 400px;
@@ -200,6 +201,42 @@ $driveLink = "https://drive.google.com/drive/folders/1dbMg1Z_KVbIDujy2RF3NC6R4aT
             border-radius: 0.5rem;
             font-weight: 600;
             cursor: pointer;
+        }
+        .site-header {
+            background: #05060a;
+            padding: 1rem 0;
+        }
+        .nav-list {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            list-style: none;
+            padding: 0;
+        }
+        .nav-list a {
+            color: #c0caf5;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+        .nav-list a:hover {
+            color: #00f2fe;
+        }
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: white;
+            text-decoration: none;
+        }
+        .brand-mark {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #00f2fe;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
         }
     </style>
 </head>
@@ -275,8 +312,12 @@ $driveLink = "https://drive.google.com/drive/folders/1dbMg1Z_KVbIDujy2RF3NC6R4aT
                     <form class="assignment-form" action="update.php" method="POST">
                         <input type="hidden" name="id" value="<?= $act['id'] ?>">
                         <div class="form-row">
-                            <input type="text" name="professor" placeholder="Seu nome" value="<?= htmlspecialchars($act['professor']) ?>" style="flex: 2;">
-                            <input type="text" name="applied_at" placeholder="Data (ex: 02/10)" value="<?= htmlspecialchars($act['applied_at']) ?>" style="flex: 1;">
+                            <div class="form-group">
+                                <input type="text" name="professor" placeholder="Seu nome" value="<?= htmlspecialchars($act['professor']) ?>">
+                            </div>
+                            <div class="form-group">
+                                <input type="text" name="applied_at" placeholder="Data (ex: 02/10)" value="<?= htmlspecialchars($act['applied_at']) ?>">
+                            </div>
                         </div>
                         <textarea name="observations" placeholder="Observações..." rows="2"><?= htmlspecialchars($act['observations']) ?></textarea>
                         <button type="submit">Salvar Alterações</button>
