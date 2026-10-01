@@ -26,7 +26,6 @@ $is_auth = !empty($_SESSION['cultura_digital_auth']);
 
 $dataFile = __DIR__ . '/data.json';
 $activities = json_decode(file_get_contents($dataFile), true);
-
 $driveLink = "https://drive.google.com/drive/folders/1dbMg1Z_KVbIDujy2RF3NC6R4aTVlXpO6?usp=sharing";
 ?>
 <!DOCTYPE html>
@@ -49,10 +48,67 @@ $driveLink = "https://drive.google.com/drive/folders/1dbMg1Z_KVbIDujy2RF3NC6R4aT
     <link rel="stylesheet" href="../../assets/css/animations.css" />
 
     <style>
+        .site-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background: rgba(5, 6, 10, 0.8) !important;
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 1rem 0;
+        }
+        .header-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .nav-list {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .nav-list a {
+            color: #c0caf5;
+            text-decoration: none;
+            transition: color 0.2s;
+            font-family: 'Outfit', sans-serif;
+            font-size: 0.95rem;
+            font-weight: 500;
+        }
+        .nav-list a:hover {
+            color: #00f2fe;
+        }
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: white;
+            text-decoration: none;
+        }
+        .brand-mark {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #00f2fe;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+        .project-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
         .activity-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-            gap: 1.5rem;
+            gap: 2rem;
             margin-top: 2rem;
         }
         .activity-card {
@@ -101,7 +157,7 @@ $driveLink = "https://drive.google.com/drive/folders/1dbMg1Z_KVbIDujy2RF3NC6R4aT
             font-size: 0.85rem;
             background: #181d30;
             color: #e0af68;
-            padding: 0.6rem;
+            padding: 0.8rem;
             border-radius: 0.4rem;
             border-left: 3px solid #00f2fe;
             margin-top: 0.3rem;
@@ -110,9 +166,9 @@ $driveLink = "https://drive.google.com/drive/folders/1dbMg1Z_KVbIDujy2RF3NC6R4aT
         .assignment-form {
             display: flex;
             flex-direction: column;
-            gap: 0.8rem;
+            gap: 1rem;
             margin-top: auto;
-            padding: 1.2rem;
+            padding: 1.5rem;
             background: linear-gradient(135deg, rgba(0, 242, 254, 0.05) 0%, rgba(79, 172, 254, 0.05) 100%);
             border: 1px solid #2a3755;
             border-radius: 0.8rem;
@@ -121,10 +177,6 @@ $driveLink = "https://drive.google.com/drive/folders/1dbMg1Z_KVbIDujy2RF3NC6R4aT
             display: flex;
             flex-direction: column;
             gap: 0.8rem;
-            margin-bottom: 0.5rem;
-        }
-        .form-group {
-            width: 100%;
         }
         .form-group input, .assignment-form textarea {
             width: 100%;
@@ -170,90 +222,59 @@ $driveLink = "https://drive.google.com/drive/folders/1dbMg1Z_KVbIDujy2RF3NC6R4aT
         .assignment-form button:active {
             transform: scale(0.98);
         }
-        .project-header {
-            text-align: center;
-            margin-bottom: 4rem;
-        }
         .login-box {
             max-width: 400px;
-            margin: 4rem auto;
-            background: var(--surface-2);
-            padding: 2.5rem;
+            margin: 6rem auto;
+            background: #111420;
+            padding: 3rem;
             border-radius: 1rem;
-            border: 1px solid var(--border-subtle);
+            border: 1px solid #222940;
             text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
         }
         .login-box input {
             width: 100%;
-            padding: 0.8rem;
-            margin: 1rem 0;
-            background: var(--surface-3);
-            border: 1px solid var(--border-subtle);
+            padding: 0.9rem;
+            margin: 1.5rem 0;
+            background: #090c15;
+            border: 1px solid #2e3859;
             border-radius: 0.5rem;
             color: white;
+            font-size: 1rem;
+            text-align: center;
         }
         .login-box button {
             width: 100%;
-            padding: 0.8rem;
-            background: var(--accent-primary);
-            color: white;
+            padding: 1rem;
+            background: linear-gradient(135deg, #00f2fe 0%, #4facfe 100%);
+            color: #05060a;
             border: none;
             border-radius: 0.5rem;
-            font-weight: 600;
+            font-weight: 700;
             cursor: pointer;
+            transition: transform 0.2s;
         }
-        .site-header {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            z-index: 100;
-            background: rgba(5, 6, 10, 0.8) !important;
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-            padding: 1rem 0;
-        }
-        .header-inner {
+        .login-box button:hover { transform: scale(1.02); }
+        .drive-box {
+            background: rgba(0, 242, 254, 0.03);
+            border-radius: 1rem;
+            padding: 3rem;
+            text-align: center;
+            margin-top: 4rem;
+            border: 1px solid rgba(0, 242, 254, 0.1);
             display: flex;
+            flex-direction: column;
             align-items: center;
-            justify-content: space-between;
+            justify-content: center;
         }
-        .nav-list {
-            display: flex;
-            align-items: center;
-            gap: 2rem;
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-        .nav-list a {
-            color: #c0caf5;
-            text-decoration: none;
-            transition: color 0.2s;
-            font-family: 'Outfit', sans-serif;
-            font-size: 0.95rem;
-            font-weight: 500;
-        }
-        .nav-list a:hover {
+        .drive-box i {
+            font-size: 3rem;
             color: #00f2fe;
+            margin-bottom: 1.5rem;
         }
-        .brand {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            color: white;
-            text-decoration: none;
-        }
-        .brand-mark {
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: #00f2fe;
-        }
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 1.5rem;
+        @media (max-width: 768px) {
+            .nav-list { display: none; }
+            .project-header h1 { font-size: 1.5rem !important; }
         }
     </style>
 </head>
@@ -279,22 +300,15 @@ $driveLink = "https://drive.google.com/drive/folders/1dbMg1Z_KVbIDujy2RF3NC6R4aT
         </div>
     </header>
 
-    <main class="container" style="padding-top: 8rem; padding-bottom: 6rem;">
-        <div class="project-header reveal" data-reveal>
-            <p class="section-kicker">EJA - Barão de Tramandaí</p>
-            <h1 class="hero-title" style="font-size: 2rem; line-height: 1.2;">CAMINHOS PARA O ENSINO SUPERIOR E A EDUCAÇÃO PROFISSIONAL</h1>
-            <p class="hero-subtitle">Espaço Integrado de Colaboração Interdisciplinar e Atividades Metodológicas (2026/2)</p>
-        </div>
-
+    <main class="container" style="padding-top: 10rem; padding-bottom: 6rem;">
         <?php if (!$is_auth): ?>
-            <!-- Form de senha de acesso -->
             <div class="login-box reveal" data-reveal>
-                <i class="fa-solid fa-lock" style="font-size: 2.5rem; color: var(--accent-primary); margin-bottom: 1rem;"></i>
-                <h2>Área Restrita</h2>
-                <p style="color: var(--text-muted); font-size: 0.9rem;">Digite a senha simples do projeto para visualizar e editar.</p>
+                <i class="fa-solid fa-lock" style="font-size: 3rem; color: #00f2fe; margin-bottom: 1.5rem;"></i>
+                <h2 style="font-family: 'Orbitron', sans-serif; color: white;">Área Restrita</h2>
+                <p style="color: #c0caf5; font-size: 0.95rem; margin-top: 1rem;">Digite a senha simples do projeto para visualizar e editar.</p>
                 
                 <?php if ($erro): ?>
-                    <p style="color: #ff6b6b; font-size: 0.9rem; margin-top: 0.5rem;"><?= htmlspecialchars($erro) ?></p>
+                    <p style="color: #ff6b6b; font-size: 0.9rem; margin-top: 1rem;"><?= htmlspecialchars($erro) ?></p>
                 <?php endif; ?>
 
                 <form method="POST">
@@ -303,15 +317,20 @@ $driveLink = "https://drive.google.com/drive/folders/1dbMg1Z_KVbIDujy2RF3NC6R4aT
                 </form>
             </div>
         <?php else: ?>
-            <!-- Conteúdo Protegido -->
+            <div class="project-header reveal" data-reveal>
+                <p class="section-kicker">EJA - Barão de Tramandaí</p>
+                <h1 class="hero-title" style="font-size: 2.2rem; line-height: 1.2; color: white;">CAMINHOS PARA O ENSINO SUPERIOR E A EDUCAÇÃO PROFISSIONAL</h1>
+                <p class="hero-subtitle" style="color: #c0caf5; margin-top: 1rem;">Espaço Integrado de Colaboração Interdisciplinar e Atividades Metodológicas (2026/2)</p>
+            </div>
+
             <div class="activity-grid">
                 <?php foreach ($activities as $act): ?>
                 <article class="activity-card reveal" data-reveal>
-                    <h3><?= htmlspecialchars($act['activity']) ?></h3>
+                    <h3 style="font-family: 'Orbitron', sans-serif;"><?= htmlspecialchars($act['activity']) ?></h3>
                     
                     <div class="info-row">
                         <span class="info-label">Professor(a)</span>
-                        <span class="info-value"><?= $act['professor'] ? htmlspecialchars($act['professor']) : '<span style="font-style: italic; color: var(--text-muted);">Aguardando...</span>' ?></span>
+                        <span class="info-value"><?= $act['professor'] ? htmlspecialchars($act['professor']) : '<span style="font-style: italic; color: #617196;">Aguardando...</span>' ?></span>
                     </div>
 
                     <div class="info-row">
@@ -343,20 +362,20 @@ $driveLink = "https://drive.google.com/drive/folders/1dbMg1Z_KVbIDujy2RF3NC6R4aT
                 <?php endforeach; ?>
             </div>
 
-            <div class="drive-box reveal" data-reveal style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
+            <div class="drive-box reveal" data-reveal>
                 <i class="fa-brands fa-google-drive"></i>
-                <h2>Envio de Arquivos</h2>
-                <p>Clique no botão abaixo para acessar a pasta compartilhada no Google Drive e enviar seus materiais.</p>
-                <a href="<?= $driveLink ?>" target="_blank" class="btn btn-primary" style="margin-top: 1rem; width: fit-content; display: inline-flex; align-items: center; gap: 0.5rem;">
+                <h2 style="font-family: 'Orbitron', sans-serif; color: white;">Envio de Arquivos</h2>
+                <p style="color: #c0caf5; margin: 1rem 0;">Clique no botão abaixo para acessar a pasta compartilhada no Google Drive e enviar seus materiais.</p>
+                <a href="<?= $driveLink ?>" target="_blank" class="btn btn-primary" style="margin-top: 1.5rem; width: fit-content; display: inline-flex; align-items: center; gap: 0.8rem; background: linear-gradient(135deg, #00f2fe 0%, #4facfe 100%); color: #05060a; padding: 1rem 2rem; border-radius: 0.5rem; text-decoration: none; font-weight: 700;">
                     <i class="fa-solid fa-cloud-arrow-up"></i> Acessar Google Drive
                 </a>
             </div>
         <?php endif; ?>
     </main>
 
-    <footer class="site-footer">
-        <div class="container footer-inner">
-            <p>© Hedigar - Projeto Cultura Digital EJA 2026</p>
+    <footer class="site-footer" style="text-align: center; padding: 4rem 0; border-top: 1px solid rgba(255,255,255,0.05);">
+        <div class="container">
+            <p style="color: #617196;">© Hedigar - Projeto Interdisciplinar EJA 2026</p>
         </div>
     </footer>
 
