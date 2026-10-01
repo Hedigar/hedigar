@@ -56,49 +56,54 @@ $driveLink = "https://drive.google.com/drive/folders/1dbMg1Z_KVbIDujy2RF3NC6R4aT
             margin-top: 2rem;
         }
         .activity-card {
-            background: var(--surface-2);
-            border: 1px solid var(--border-subtle);
+            background: #111420;
+            border: 1px solid #222940;
             border-radius: 1rem;
             padding: 1.5rem;
-            transition: transform 0.3s ease, border-color 0.3s ease;
+            transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
             display: flex;
             flex-direction: column;
             gap: 1rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
         }
         .activity-card:hover {
             transform: translateY(-5px);
-            border-color: var(--accent-primary);
+            border-color: #00f2fe;
+            box-shadow: 0 8px 24px rgba(0, 242, 254, 0.15);
         }
         .activity-card h3 {
             font-family: 'Orbitron', sans-serif;
             font-size: 1.1rem;
-            color: var(--text-primary);
+            color: #ffffff;
             margin: 0;
+            border-bottom: 1px solid #1f2740;
+            padding-bottom: 0.6rem;
         }
         .info-row {
             font-size: 0.9rem;
-            color: var(--text-secondary);
+            color: #c0caf5;
         }
         .info-label {
             font-weight: 600;
             display: block;
             margin-bottom: 0.2rem;
-            color: var(--text-muted);
+            color: #7aa2f7;
             text-transform: uppercase;
             font-size: 0.7rem;
             letter-spacing: 0.05rem;
         }
         .info-value {
-            color: var(--accent-primary);
-            font-weight: 500;
+            color: #00f2fe;
+            font-weight: 600;
         }
         .obs-text {
             font-style: italic;
             font-size: 0.85rem;
-            background: var(--surface-3);
-            padding: 0.5rem;
+            background: #181d30;
+            color: #e0af68;
+            padding: 0.6rem;
             border-radius: 0.4rem;
-            border-left: 3px solid var(--accent-primary);
+            border-left: 3px solid #00f2fe;
             margin-top: 0.3rem;
             white-space: pre-wrap;
         }
@@ -106,40 +111,50 @@ $driveLink = "https://drive.google.com/drive/folders/1dbMg1Z_KVbIDujy2RF3NC6R4aT
             display: flex;
             flex-direction: column;
             gap: 0.8rem;
-            margin-top: 1rem;
-            padding-top: 1rem;
-            border-top: 1px dashed var(--border-subtle);
+            margin-top: auto;
+            padding: 1rem;
+            background: #161b2d;
+            border-radius: 0.8rem;
+            border: 1px solid #283150;
         }
         .form-row {
             display: flex;
             gap: 0.5rem;
         }
         .assignment-form input, .assignment-form textarea {
-            background: var(--surface-3);
-            border: 1px solid var(--border-subtle);
+            background: #090c15;
+            border: 1px solid #2e3859;
             border-radius: 0.5rem;
-            padding: 0.5rem 0.8rem;
-            color: var(--text-primary);
+            padding: 0.6rem 0.8rem;
+            color: #ffffff;
             font-size: 0.85rem;
             font-family: 'Outfit', sans-serif;
+            transition: border-color 0.2s;
+        }
+        .assignment-form input::placeholder, .assignment-form textarea::placeholder {
+            color: #617196;
         }
         .assignment-form input:focus, .assignment-form textarea:focus {
-            border-color: var(--accent-primary);
+            border-color: #00f2fe;
+            background: #0d1220;
             outline: none;
+            box-shadow: 0 0 0 2px rgba(0, 242, 254, 0.2);
         }
         .assignment-form button {
-            background: var(--accent-primary);
-            color: white;
+            background: linear-gradient(135deg, #00f2fe 0%, #4facfe 100%);
+            color: #05060a;
             border: none;
             border-radius: 0.5rem;
-            padding: 0.6rem;
+            padding: 0.7rem;
             cursor: pointer;
             font-size: 0.85rem;
-            font-weight: 600;
-            transition: opacity 0.2s;
+            font-weight: 700;
+            letter-spacing: 0.03rem;
+            transition: opacity 0.2s, transform 0.1s;
         }
         .assignment-form button:hover {
-            opacity: 0.9;
+            opacity: 0.95;
+            transform: scale(1.01);
         }
         .drive-box {
             background: var(--surface-accent);
