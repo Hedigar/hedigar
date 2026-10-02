@@ -15,9 +15,9 @@ main,
   z-index: 20;
   height: var(--header-h);
   backdrop-filter: blur(16px);
-  background: rgba(5, 6, 10, 0.55);
+  background: rgba(5, 6, 10, 0.82);
   border-bottom: 1px solid transparent;
-  transition: border-color 0.3s var(--ease), background 0.3s var(--ease);
+  transition: border-color 0.3s var(--ease), background  0.3s var(--ease);
 }
 
 .site-header.is-scrolled {
